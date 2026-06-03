@@ -39,9 +39,120 @@ Use setInterval to call the nextImage() function at regular intervals.
 Clean up the interval when the component unmounts using clearInterval to prevent memory leaks.
 
 ## PROGRAM
+JSX FILE 
+```
+import React, { useState } from "react";
+import "./ImageCarousel.css";
 
+function ImageCarousel() {
+  const images = [
+    "https://picsum.photos/id/1015/800/400",
+    "https://picsum.photos/id/1016/800/400",
+    "https://picsum.photos/id/1018/800/400",
+    "https://picsum.photos/id/1020/800/400"
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  const nextImage = () => {
+    setCurrent((current + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrent(
+      current === 0 ? images.length - 1 : current - 1
+    );
+  };
+
+  return (
+    <div className="container">
+      <h1>Image Carousel</h1>
+
+      <div className="carousel">
+        <button onClick={prevImage}>◀</button>
+
+        <img
+          src={images[current]}
+          alt="carousel"
+        />
+
+        <button onClick={nextImage}>▶</button>
+      </div>
+
+      <footer>
+        <p>Name: THARUN</p>
+        <p>Register Number: YOUR_REGISTER_NUMBER</p>
+      </footer>
+    </div>
+  );
+}
+
+export default ImageCarousel;
+```
+CSS FILE 
+```
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+.container{
+  min-height:100vh;
+  background:#f4f4f4;
+  text-align:center;
+  padding:40px;
+}
+
+h1{
+  margin-bottom:30px;
+}
+
+.carousel{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.carousel img{
+  width:800px;
+  max-width:90%;
+  height:400px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+.carousel button{
+  padding:15px 20px;
+  font-size:20px;
+  border:none;
+  background:#007bff;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+footer{
+  margin-top:40px;
+  padding:20px;
+}
+```
+APP.JSX
+```
+import ImageCarousel from "./ImageCarousel";
+
+function App() {
+  return <ImageCarousel />;
+}
+
+export default App;
+```
 
 ## OUTPUT
+<img width="662" height="398" alt="image" src="https://github.com/user-attachments/assets/7afa5425-3f39-4172-9b5f-9dea76ab5316" />
 
 
 ## RESULT
